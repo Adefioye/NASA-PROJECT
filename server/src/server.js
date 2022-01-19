@@ -6,9 +6,6 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 8000;
 
-const MONGO_URL =
-  "mongodb+srv://nasa-api-user:6hz7eHGoGVwlepK2@nasa-api-cluster.pefcr.mongodb.net/nasa-api?retryWrites=true&w=majority";
-
 mongoose.connection.once("open", () => {
   console.log("MongoDB connection ready!");
 });
@@ -19,7 +16,7 @@ mongoose.connection.on("error", (err) => {
 
 const startServer = async () => {
   async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(String(process.env.MONGO_URL));
   }
 
   main();
